@@ -23,6 +23,7 @@
 		057DC2A6181DF4F500D15995 /* MEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 057DC2A5181DF4F500D15995 /* MEMenuViewController.m */; };
 		05A4996D1822FEA90051F08E /* MEDynamicTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A4996C1822FEA90051F08E /* MEDynamicTransition.m */; };
 		05CBD182182DF3B200118119 /* METransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CBD181182DF3B200118119 /* METransitions.m */; };
+		63F52CC2184CC5FD002EEE36 /* MEParallaxAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F52CC1184CC5FD002EEE36 /* MEParallaxAnimationController.m */; };
 		DB53A2AC25744123A2240315 /* libPods-TransitionFun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE0E5E204AC4832B02D4341 /* libPods-TransitionFun.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		05CBD180182DF3B200118119 /* METransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = METransitions.h; sourceTree = "<group>"; };
 		05CBD181182DF3B200118119 /* METransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = METransitions.m; sourceTree = "<group>"; };
 		265D2379E32047049E358830 /* Pods-TransitionFun.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TransitionFun.xcconfig"; path = "../Pods/Pods-TransitionFun.xcconfig"; sourceTree = "<group>"; };
+		63F52CC0184CC5FD002EEE36 /* MEParallaxAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEParallaxAnimationController.h; sourceTree = "<group>"; };
+		63F52CC1184CC5FD002EEE36 /* MEParallaxAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEParallaxAnimationController.m; sourceTree = "<group>"; };
 		7EE0E5E204AC4832B02D4341 /* libPods-TransitionFun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TransitionFun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,6 +84,8 @@
 				05629E91181F4DA200A88F6C /* MEFoldAnimationController.m */,
 				05160F561820CDF300EA3BDD /* MEZoomAnimationController.h */,
 				05160F571820CDF300EA3BDD /* MEZoomAnimationController.m */,
+				63F52CC0184CC5FD002EEE36 /* MEParallaxAnimationController.h */,
+				63F52CC1184CC5FD002EEE36 /* MEParallaxAnimationController.m */,
 				05A4996B1822FEA90051F08E /* MEDynamicTransition.h */,
 				05A4996C1822FEA90051F08E /* MEDynamicTransition.m */,
 			);
@@ -258,6 +263,7 @@
 				057DC268181DE6AE00D15995 /* main.m in Sources */,
 				05A4996D1822FEA90051F08E /* MEDynamicTransition.m in Sources */,
 				057DC2A6181DF4F500D15995 /* MEMenuViewController.m in Sources */,
+				63F52CC2184CC5FD002EEE36 /* MEParallaxAnimationController.m in Sources */,
 				05160F581820CDF300EA3BDD /* MEZoomAnimationController.m in Sources */,
 				057DC2A3181DEE4700D15995 /* METransitionsViewController.m in Sources */,
 				056599E518454CB400B9C16B /* MESettingsViewController.m in Sources */,

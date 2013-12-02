@@ -23,10 +23,11 @@
 
 #import "METransitions.h"
 
-NSString * const METransitionNameDefault = @"Default";
-NSString * const METransitionNameFold    = @"Fold";
-NSString * const METransitionNameZoom    = @"Zoom";
-NSString * const METransitionNameDynamic = @"UIKit Dynamics";
+NSString * const METransitionNameDefault  = @"Default";
+NSString * const METransitionNameFold     = @"Fold";
+NSString * const METransitionNameZoom     = @"Zoom";
+NSString * const METransitionNameParallax = @"Parallax";
+NSString * const METransitionNameDynamic  = @"UIKit Dynamics";
 
 @interface METransitions ()
 @end
@@ -38,10 +39,11 @@ NSString * const METransitionNameDynamic = @"UIKit Dynamics";
 - (NSArray *)all {
     if (_all) return _all;
     
-    _all = @[@{ @"name" : METransitionNameDefault, @"transition" : [NSNull null] },
-             @{ @"name" : METransitionNameFold,    @"transition" : self.foldAnimationController },
-             @{ @"name" : METransitionNameZoom,    @"transition" : self.zoomAnimationController },
-             @{ @"name" : METransitionNameDynamic, @"transition" : self.dynamicTransition }];
+    _all = @[@{ @"name" : METransitionNameDefault,  @"transition" : [NSNull null] },
+             @{ @"name" : METransitionNameFold,     @"transition" : self.foldAnimationController },
+             @{ @"name" : METransitionNameZoom,     @"transition" : self.zoomAnimationController },
+             @{ @"name" : METransitionNameParallax, @"transition" : self.parallaxAnimationController },
+             @{ @"name" : METransitionNameDynamic,  @"transition" : self.dynamicTransition }];
     
     return _all;
 }
@@ -62,6 +64,15 @@ NSString * const METransitionNameDynamic = @"UIKit Dynamics";
     _zoomAnimationController = [[MEZoomAnimationController alloc] init];
     
     return _zoomAnimationController;
+}
+
+- (MEParallaxAnimationController *)parallaxAnimationController {
+    if (_parallaxAnimationController) return _parallaxAnimationController;
+    
+    _parallaxAnimationController = [[MEParallaxAnimationController alloc] init];
+	_parallaxAnimationController.parallaxFactor = 0.5f;
+    
+    return _parallaxAnimationController;
 }
 
 - (MEDynamicTransition *)dynamicTransition {

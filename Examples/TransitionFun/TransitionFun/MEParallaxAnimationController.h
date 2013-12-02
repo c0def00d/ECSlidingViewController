@@ -1,4 +1,4 @@
-// METransitions.h
+// MEParallaxAnimationController.h
 // TransitionFun
 //
 // Copyright (c) 2013, Michael Enriquez (http://enriquez.me)
@@ -21,25 +21,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import	<Foundation/Foundation.h>
 #import "ECSlidingViewController.h"
-#import "MEFoldAnimationController.h"
-#import "MEZoomAnimationController.h"
-#import "MEParallaxAnimationController.h"
-#import "MEDynamicTransition.h"
 
-FOUNDATION_EXPORT NSString *const METransitionNameDefault;
-FOUNDATION_EXPORT NSString *const METransitionNameFold;
-FOUNDATION_EXPORT NSString *const METransitionNameZoom;
-FOUNDATION_EXPORT NSString *const METransitionNameParallax;
-FOUNDATION_EXPORT NSString *const METransitionNameDynamic;
+@interface MEParallaxAnimationController : NSObject <UIViewControllerAnimatedTransitioning,
+													 ECSlidingViewControllerDelegate,
+													 ECSlidingViewControllerLayout>
 
-@interface METransitions : NSObject {
-    NSArray *_all;
-}
-@property (nonatomic, strong) MEFoldAnimationController *foldAnimationController;
-@property (nonatomic, strong) MEZoomAnimationController *zoomAnimationController;
-@property (nonatomic, strong) MEParallaxAnimationController *parallaxAnimationController;
-@property (nonatomic, strong) MEDynamicTransition *dynamicTransition;
-@property (nonatomic, strong, readonly) NSArray *all;
+@property (nonatomic) CGFloat parallaxFactor;
+
 @end
