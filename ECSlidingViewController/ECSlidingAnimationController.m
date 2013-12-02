@@ -38,31 +38,38 @@
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
-    UIViewController *toViewController  = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
-    CGRect topViewInitialFrame = [transitionContext initialFrameForViewController:topViewController];
-    CGRect topViewFinalFrame   = [transitionContext finalFrameForViewController:topViewController];
+	UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+	CGRect fromViewInitialFrame = [transitionContext initialFrameForViewController:fromViewController];
+	CGRect fromViewFinalFrame = [transitionContext finalFrameForViewController:fromViewController];
+	
+	UIViewController *toViewController  = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+	CGRect toViewInitialFrame = [transitionContext initialFrameForViewController:toViewController];
+	CGRect toViewFinalFrame = [transitionContext finalFrameForViewController:toViewController];
+	
+	UIView* containerView = [transitionContext containerView];
+	fromViewController.view.frame = fromViewInitialFrame;
+	toViewController.view.frame = toViewInitialFrame;
     
-    topViewController.view.frame = topViewInitialFrame;
-    
-    if (topViewController != toViewController) {
-        CGRect toViewInitialFrame = [transitionContext initialFrameForViewController:toViewController];
-        toViewController.view.frame = toViewInitialFrame;
-        [containerView insertSubview:toViewController.view belowSubview:topViewController.view];
+	UIViewController *topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
+    if (toViewController != topViewController) {
+        [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
     }
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        if (self.coordinatorAnimations) self.coordinatorAnimations((id<UIViewControllerTransitionCoordinatorContext>)transitionContext);
-        topViewController.view.frame = topViewFinalFrame;
+		if (self.coordinatorAnimations) self.coordinatorAnimations((id<UIViewControllerTransitionCoordinatorContext>)transitionContext);
+		fromViewController.view.frame = fromViewFinalFrame;
+		toViewController.view.frame = toViewFinalFrame;
     } completion:^(BOOL finished) {
         if ([transitionContext transitionWasCancelled]) {
-            topViewController.view.frame = [transitionContext initialFrameForViewController:topViewController];
-        }
+            fromViewController.view.frame = fromViewInitialFrame;
+			toViewController.view.frame = toViewInitialFrame;
+        } else if (toViewController == topViewController) {
+			[fromViewController.view removeFromSuperview];
+		}
         
-        if (self.coordinatorCompletion) self.coordinatorCompletion((id<UIViewControllerTransitionCoordinatorContext>)transitionContext);
+		if (self.coordinatorCompletion) self.coordinatorCompletion((id<UIViewControllerTransitionCoordinatorContext>)transitionContext);
         [transitionContext completeTransition:finished];
     }];
 }

@@ -25,22 +25,6 @@
 
 @implementation MEParallaxAnimationController
 
-#pragma mark - ECSlidingViewControllerDelegate Methods
-
-- (id <UIViewControllerAnimatedTransitioning>)slidingViewController:(ECSlidingViewController *)slidingViewController
-									animationControllerForOperation:(ECSlidingViewControllerOperation)operation
-												  topViewController:(UIViewController *)topViewController
-{
-	return self;
-}
-
-- (id <ECSlidingViewControllerLayout>)slidingViewController:(ECSlidingViewController *)slidingViewController
-						 layoutControllerForTopViewPosition:(ECSlidingViewControllerTopViewPosition)topViewPosition
-{
-	return self;
-}
-
-
 #pragma mark - ECSlidingViewControllerLayout
 
 - (CGRect)slidingViewController:(ECSlidingViewController *)slidingViewController
@@ -66,47 +50,6 @@
 	}
 	
 	return frame;
-}
-
-#pragma mark - UIViewControllerAnimatedTransitioning
-
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext {
-    return 0.25;
-}
-
-- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-	UIViewController * fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-	CGRect fromViewInitialFrame = [transitionContext initialFrameForViewController:fromViewController];
-	CGRect fromViewFinalFrame = [transitionContext finalFrameForViewController:fromViewController];
-	
-	UIViewController * toViewController  = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-	CGRect toViewInitialFrame = [transitionContext initialFrameForViewController:toViewController];
-	CGRect toViewFinalFrame = [transitionContext finalFrameForViewController:toViewController];
-
-	UIView* containerView = [transitionContext containerView];
-	fromViewController.view.frame = fromViewInitialFrame;
-	toViewController.view.frame = toViewInitialFrame;
-    
-	UIViewController * topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
-    if (toViewController != topViewController) {
-        [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
-    }
-    
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration animations:^{
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-		fromViewController.view.frame = fromViewFinalFrame;
-		toViewController.view.frame = toViewFinalFrame;
-    } completion:^(BOOL finished) {
-        if ([transitionContext transitionWasCancelled]) {
-            fromViewController.view.frame = fromViewInitialFrame;
-			toViewController.view.frame = toViewInitialFrame;
-        } else if (toViewController == topViewController) {
-			[fromViewController.view removeFromSuperview];
-		}
-        
-        [transitionContext completeTransition:finished];
-    }];
 }
 
 @end

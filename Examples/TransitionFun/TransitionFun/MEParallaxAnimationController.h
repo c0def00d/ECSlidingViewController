@@ -24,8 +24,7 @@
 #import	<Foundation/Foundation.h>
 #import "ECSlidingViewController.h"
 
-@interface MEParallaxAnimationController : NSObject <UIViewControllerAnimatedTransitioning,
-													 ECSlidingViewControllerDelegate,
+@interface MEParallaxAnimationController : NSObject <ECSlidingViewControllerDelegate,
 													 ECSlidingViewControllerLayout>
 
 @property (nonatomic) CGFloat parallaxFactor;
