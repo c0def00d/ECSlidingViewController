@@ -27,14 +27,14 @@
 
 #pragma mark - ECSlidingViewControllerDelegate Methods
 
-- (id <UIViewControllerAnimatedTransitioning>)slidingViewController:(ECSlidingViewController*)slidingViewController
+- (id <UIViewControllerAnimatedTransitioning>)slidingViewController:(ECSlidingViewController *)slidingViewController
 									animationControllerForOperation:(ECSlidingViewControllerOperation)operation
-												  topViewController:(UIViewController*)topViewController
+												  topViewController:(UIViewController *)topViewController
 {
 	return self;
 }
 
-- (id <ECSlidingViewControllerLayout>)slidingViewController:(ECSlidingViewController*)slidingViewController
+- (id <ECSlidingViewControllerLayout>)slidingViewController:(ECSlidingViewController *)slidingViewController
 						 layoutControllerForTopViewPosition:(ECSlidingViewControllerTopViewPosition)topViewPosition
 {
 	return self;
@@ -43,8 +43,8 @@
 
 #pragma mark - ECSlidingViewControllerLayout
 
-- (CGRect)slidingViewController:(ECSlidingViewController*)slidingViewController
-         frameForViewController:(UIViewController*)viewController
+- (CGRect)slidingViewController:(ECSlidingViewController *)slidingViewController
+         frameForViewController:(UIViewController *)viewController
                 topViewPosition:(ECSlidingViewControllerTopViewPosition)topViewPosition
 {
 	CGRect frame = slidingViewController.view.bounds;
@@ -75,11 +75,11 @@
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-	UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+	UIViewController * fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	CGRect fromViewInitialFrame = [transitionContext initialFrameForViewController:fromViewController];
 	CGRect fromViewFinalFrame = [transitionContext finalFrameForViewController:fromViewController];
 	
-	UIViewController* toViewController  = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+	UIViewController * toViewController  = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	CGRect toViewInitialFrame = [transitionContext initialFrameForViewController:toViewController];
 	CGRect toViewFinalFrame = [transitionContext finalFrameForViewController:toViewController];
 
@@ -87,7 +87,7 @@
 	fromViewController.view.frame = fromViewInitialFrame;
 	toViewController.view.frame = toViewInitialFrame;
     
-	UIViewController* topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
+	UIViewController * topViewController = [transitionContext viewControllerForKey:ECTransitionContextTopViewControllerKey];
     if (toViewController != topViewController) {
         [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
     }
