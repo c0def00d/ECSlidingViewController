@@ -25,6 +25,14 @@
 
 @implementation MEParallaxAnimationController
 
+#pragma mark - ECSlidingViewControllerDelegate
+
+- (id<ECSlidingViewControllerLayout>)slidingViewController:(ECSlidingViewController *)slidingViewController
+                        layoutControllerForTopViewPosition:(ECSlidingViewControllerTopViewPosition)topViewPosition
+{
+    return self;
+}
+
 #pragma mark - ECSlidingViewControllerLayout
 
 - (CGRect)slidingViewController:(ECSlidingViewController *)slidingViewController
